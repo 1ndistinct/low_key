@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\Prefab Spawner\MoveForward.cs" />
     <Compile Include="Assets\Scripts\Prefab Spawner\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Prefab Spawner\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\Prefab Spawner\meleeAttack.cs" />
     <Compile Include="Assets\Scripts\UI\MainUIController.cs" />
     <Compile Include="Assets\Scripts\UI\MetaGameController.cs" />
     <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />

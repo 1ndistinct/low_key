@@ -21,6 +21,8 @@ public class PlayerController1 : MonoBehaviour
     private AudioSource playerAudio;
 
     public GameObject projectilePrefab;
+    public GameObject meleePrefab;
+    public static Transform thispos;
 
     private float horizontalInput;
     private float speed = 10.0f;
@@ -34,20 +36,22 @@ public class PlayerController1 : MonoBehaviour
         Physics.gravity *= gravityModifier;
         //playerAnim = GetComponent<Animator>();
         //playerAudio = GetComponent<AudioSource>();
+        thispos = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Restricts movement on x axis past this point
-        if (transform.position.x < -xRange)
+        /*//Restricts movement on x axis past this point
+        if (transform.position.x < -mainCamera.transform.position.x)
             transform.position = new Vector2(-xRange, transform.position.y);
 
-        if (transform.position.x > xRange)
-            transform.position = new Vector2(xRange, transform.position.y);
+        if (transform.position.x > mainCamera.transform.position.x)
+            transform.position = new Vector2(mainCamera.transform.position.x, transform.position.y);*/
         //
 
         // Player movement left to right
+        thispos = transform;
         horizontalInput = Input.GetAxis("Horizontal");
         //Dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
@@ -100,7 +104,7 @@ public class PlayerController1 : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Z))
         {
             // No longer necessary to Instantiate prefabs
-             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+             Instantiate(projectilePrefab, transform.position + new Vector3(horizontalInput*2,0,0) , projectilePrefab.transform.rotation);
 
             // Get an object object from the pool
 /*            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
@@ -112,6 +116,20 @@ public class PlayerController1 : MonoBehaviour
             }*/
         }
         //
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            // No longer necessary to Instantiate prefabs
+            meleePrefab.SetActive(true);
+
+            // Get an object object from the pool
+            /*            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+                        if (pooledProjectile != null)
+                        {
+                            pooledProjectile.SetActive(true); // activate it
+                            pooledProjectile.transform.position = transform.position; // position it at player
+
+                        }*/
+        }
     }
 
     public Vector2 Dash()
@@ -150,5 +168,6 @@ public class PlayerController1 : MonoBehaviour
             playerAudio.PlayOneShot(crashSound, 1.0f);*/
         }
         //
+       
     }
 }

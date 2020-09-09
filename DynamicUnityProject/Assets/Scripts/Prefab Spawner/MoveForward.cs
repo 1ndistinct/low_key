@@ -12,14 +12,15 @@ public class MoveForward : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mf = PlayerController1.right;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if(mf)
-            rb.AddForce(Vector2.right * 100 , ForceMode2D.Impulse);
+            rb.AddForce(Vector2.right * 75 , ForceMode2D.Impulse);
         else if(!mf)
-            rb.AddForce(Vector2.left * 100 , ForceMode2D.Impulse);
+            rb.AddForce(Vector2.left * 75 , ForceMode2D.Impulse);
     }
 }

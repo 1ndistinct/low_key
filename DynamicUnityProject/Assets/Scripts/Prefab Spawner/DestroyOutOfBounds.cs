@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
     private float topBound = 30;
     private float lowerBound = -10;
-
+    public Transform mainCamera;
     // Start is called before the first frame update
     void Start()
     {
-
+        mainCamera = Camera2DFollow.pos;
+        topBound = mainCamera.transform.position.x + 10;
+        lowerBound = mainCamera.transform.position.x - 10;
     }
 
     // Update is called once per frame
     void Update()
     {
+        mainCamera = Camera2DFollow.pos;
+        topBound = mainCamera.position.x + 30;
+        lowerBound = mainCamera.position.x - 30;
         if (transform.position.x > topBound)
         {
             // Instead of destroying the projectile when it leaves the screen
