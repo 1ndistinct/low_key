@@ -49,7 +49,17 @@ public class PlayerController1 : MonoBehaviour
 
         // Player movement left to right
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
+        //Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput*20);
+        }
+        //
+        // Player movement left to right
+        else
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
+        }
         //
         //Condition for which way to shoot
         if (horizontalInput < -0.1)
@@ -85,16 +95,7 @@ public class PlayerController1 : MonoBehaviour
             playerAudio.PlayOneShot(jumpSound, 1.0f);*/
         }
         //
-        //Dash
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
-        {
-            dashLocal = Dash();           
-            //rb.AddForce(Vector2.right * dashDistance  * playerOrientation, ForceMode2D.Impulse);
-            rb.MovePosition(dashLocal);
-            
-        }
-        //
+        
         //Shoot
         else if (Input.GetKeyDown(KeyCode.Z))
         {
