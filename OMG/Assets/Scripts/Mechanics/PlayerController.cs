@@ -144,10 +144,7 @@ namespace Platformer.Mechanics
             targetVelocity = move * maxSpeed;
         }
 
-        private void flip(){
-            transform.Rotate (0f,180f,0f);
-        
-        }
+
         public enum JumpState
         {
             Grounded,

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class PlayerController1 : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jumpForce;
-    public float dashForce;
+    public float dashDistance;
+    public Vector2 dashLocal;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
@@ -24,6 +26,7 @@ public class PlayerController1 : MonoBehaviour
     private float speed = 10.0f;
     private float xRange = 20;
     public static bool right = true;
+    public int playerOrientation; //1--> Right facing  -1 --> Left Facing
     // Start is called before the first frame update
     void Start()
     {
@@ -52,12 +55,23 @@ public class PlayerController1 : MonoBehaviour
         if (horizontalInput < -0.1)
         {
             if (right)
+            {
+                flip();
                 right = false;
+                playerOrientation = -1;
+            }
+        
         }
         else if (horizontalInput > 0.1)
         {
             if (!right)
+            {
+                flip();
                 right = true;
+                playerOrientation = 1;
+            }
+           
+            
         }
         //
 
@@ -72,15 +86,13 @@ public class PlayerController1 : MonoBehaviour
         }
         //
         //Dash
-        else if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
         {
-            if (horizontalInput < 0 )
-                rb.AddForce(Vector2.right * dashForce  * -1, ForceMode2D.Impulse);
-            else
-                rb.AddForce(Vector2.right * dashForce * 1, ForceMode2D.Impulse);
-            /*playerAnim.SetTrigger("Jump_trig");
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);*/
+            dashLocal = Dash();           
+            //rb.AddForce(Vector2.right * dashDistance  * playerOrientation, ForceMode2D.Impulse);
+            rb.MovePosition(dashLocal);
+            
         }
         //
         //Shoot
@@ -90,7 +102,7 @@ public class PlayerController1 : MonoBehaviour
              Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
 
             // Get an object object from the pool
-            /*GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+/*            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
             if (pooledProjectile != null)
             {
                 pooledProjectile.SetActive(true); // activate it
@@ -101,6 +113,20 @@ public class PlayerController1 : MonoBehaviour
         //
     }
 
+    public Vector2 Dash()
+    {
+        Vector2 finalLocal = transform.position;
+        finalLocal.x += playerOrientation * dashDistance;
+        return finalLocal;
+    }
+
+    private void flip()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
