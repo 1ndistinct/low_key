@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class PlayerHealthTakeDamage : MonoBehaviour
 {
+    
+    public float maxHP;
+    public float currentHealth;
+    Transform HP;
     // Start is called before the first frame update
     void Start()
     {
+        HP = transform;
+        maxHP = 100;
+        currentHealth = maxHP;
+        
         
     }
 
@@ -14,5 +22,12 @@ public class PlayerHealthTakeDamage : MonoBehaviour
     void Update()
     {
         
+        //Function used to check--Debugger
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            transform.localScale.Set(1f,1f,1f);
+            print(transform.localScale);
+        }
     }
 }

@@ -9,6 +9,9 @@ public class PlayerController1 : MonoBehaviour
     public float jumpForce;
     public float dashDistance;
     public Vector2 dashLocal;
+    public GameObject dashHitBox;
+    private bool timerRunning= false;
+    public float targetDashTime = 3.0f;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
@@ -49,8 +52,40 @@ public class PlayerController1 : MonoBehaviour
 
         // Player movement left to right
         horizontalInput = Input.GetAxis("Horizontal");
+<<<<<<< Updated upstream
         transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
+=======
+
+        //Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed * playerOrientation*30);
+            GameObject clone = (GameObject)Instantiate(dashHitBox, transform.position + new Vector3(-2*playerOrientation,0,0), dashHitBox.transform.rotation);
+            Destroy(clone, 0.8f);
+        }
         //
+        else
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
+        }
+
+/*        if (timerRunning)
+        {
+            if (targetDashTime > 0.0f)
+            {
+                targetDashTime -= Time.deltaTime;
+            }
+            else
+            {
+                Destroy(dashHitBox);
+                targetDashTime = 3.0f;
+                timerRunning = false;
+            }
+        }*/
+>>>>>>> Stashed changes
+        //
+
+
         //Condition for which way to shoot
         if (horizontalInput < -0.1)
         {
@@ -112,6 +147,7 @@ public class PlayerController1 : MonoBehaviour
         }
         //
     }
+
 
     public Vector2 Dash()
     {
