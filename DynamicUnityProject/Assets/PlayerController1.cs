@@ -53,8 +53,11 @@ public class PlayerController1 : MonoBehaviour
         // Player movement left to right
         horizontalInput = Input.GetAxis("Horizontal");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
 =======
+=======
+>>>>>>> Stashed changes
 
         //Dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !gameOver)
@@ -82,6 +85,9 @@ public class PlayerController1 : MonoBehaviour
                 timerRunning = false;
             }
         }*/
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         //
 
