@@ -39,6 +39,8 @@ namespace Platformer.Mechanics
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = player;
                 ev.enemy = this;
+                
+                
             }
         }
 
