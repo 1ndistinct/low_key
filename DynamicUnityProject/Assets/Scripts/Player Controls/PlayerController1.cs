@@ -13,6 +13,8 @@ public class PlayerController1 : MonoBehaviour
     public bool isOnGround = true;
     public bool gameOver = false;
     public float moveSpeed = 1f;
+    public float shield = 0.2f;
+    
     //
     private Rigidbody2D rb;
     //
@@ -66,6 +68,9 @@ public class PlayerController1 : MonoBehaviour
         getAction();
 
 
+      
+
+
     }
 
     private void getAction() {
@@ -74,9 +79,9 @@ public class PlayerController1 : MonoBehaviour
         yInput = Input.GetAxis("Vertical");
         xForce = xInput * moveSpeed * 1000 * Time.deltaTime;
         if (right)
-            dForce = moveSpeed * 1000 * Time.deltaTime * 15;
+            dForce = moveSpeed * 1000 * Time.deltaTime * 25;
         else
-            dForce = -1*moveSpeed * 1000 * Time.deltaTime * 15;
+            dForce = -1*moveSpeed * 1000 * Time.deltaTime * 25;
         if (!isOnGround)
             gravityModifier = 3;
         force = new Vector2(xForce, 0);
@@ -172,10 +177,24 @@ public class PlayerController1 : MonoBehaviour
 
     void TakeDamage(float x)
     {
-        
-        currentHealth -= x;
-        if (currentHealth <= 0)
+        float dmg = x;
+        if (shield > 0) {
+            if (dmg - shield < 0)
+            {
+                shield -= dmg;
+                dmg = 0;
+            }
+            else
+            {
+                shield = 0;
+                dmg = dmg - shield;
+            }
+        }
+        if (currentHealth-dmg <= 0)
             currentHealth = 0;
+        else
+            currentHealth -= dmg;
+        
 
         healthBar.setHealth(currentHealth);
     }
