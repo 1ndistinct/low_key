@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace Pathfinding {
 	/// <summary>
@@ -16,28 +17,33 @@ namespace Pathfinding {
 	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_patrol.php")]
 	public class Patrol : VersionedMonoBehaviour {
 		/// <summary>Target points to move to in order</summary>
-		public Transform[] targets;
-
+		private Transform[] targets = new Transform[1];
+		private GameObject target;
 		/// <summary>Time in seconds to wait at each target</summary>
 		public float delay = 0;
-
+		
 		/// <summary>Current target index</summary>
 		int index;
 
 		IAstarAI agent;
 		float switchTime = float.PositiveInfinity;
-
+		
 		protected override void Awake () {
+			
 			base.Awake();
 			agent = GetComponent<IAstarAI>();
+			targets[0] = GameObject.Find("Mr.AlienMain").transform;
+			print(targets[0]);
+			
 		}
 
 		/// <summary>Update is called once per frame</summary>
 		void Update () {
+			
+
 			if (targets.Length == 0) return;
-
+			
 			bool search = false;
-
 			// Note: using reachedEndOfPath and pathPending instead of reachedDestination here because
 			// if the destination cannot be reached by the agent, we don't want it to get stuck, we just want it to get as close as possible and then move on.
 			if (agent.reachedEndOfPath && !agent.pathPending && float.IsPositiveInfinity(switchTime)) {

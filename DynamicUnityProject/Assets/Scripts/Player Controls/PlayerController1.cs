@@ -10,14 +10,18 @@ public class PlayerController1 : MonoBehaviour
     Vector2 dashForce,force;
     public float jumpForce;
     public float gravityModifier;
+    private float gravity;
     public bool isOnGround = true;
-    
+    public float forceMultiplier;
 
+    public GameObject gameOverOverlay;
     
     //
     private Rigidbody2D rb;
     //
-    //
+ 
+
+
     //User Variables
     public float maxHealth = 1;
     public float maxEnergy = 1;
@@ -40,25 +44,29 @@ public class PlayerController1 : MonoBehaviour
     // Start is called before the first frame update
     public static bool doActive = true;
 
+   
     void Start()
     {
+        //GameObject.DontDestroyOnLoad(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
-        Physics.gravity *= gravityModifier;
+        
         //playerAnim = GetComponent<Animator>();
         //playerAudio = GetComponent<AudioSource>();
         GameManager.currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
-
         GameManager.currentEnergy = maxEnergy;
         energyBar.setMaxEnergy(maxEnergy);
+        gravity = rb.gravityScale;
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        rb.gravityScale =gravity* gravityModifier;
         energyBar.setEnergy(GameManager.currentEnergy);
         healthBar.setHealth(GameManager.currentHealth);
-        Physics.gravity *= gravityModifier;
+        
         /*//Restricts movement on x axis past this point
         if (transform.position.x < -mainCamera.transform.position.x)
             transform.position = new Vector2(-xRange, transform.position.y);
@@ -68,7 +76,7 @@ public class PlayerController1 : MonoBehaviour
         //
         getAction();
 
-
+        GameManager.PlayerCoords = gameObject.transform;
       
 
 
@@ -81,13 +89,13 @@ public class PlayerController1 : MonoBehaviour
             gravityModifier = 1;
             xInput = Input.GetAxis("Horizontal");
             yInput = Input.GetAxis("Vertical");
-            xForce = xInput * GameManager.moveSpeed * 60000 * Time.deltaTime;
+            xForce = xInput * GameManager.moveSpeed * 60000 * Time.deltaTime*forceMultiplier;
             if (right)
-                dForce = GameManager.moveSpeed * 60000 * Time.deltaTime * 25;
+                dForce = GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
             else
-                dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25;
+                dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
             if (!isOnGround)
-                gravityModifier = 3;
+                gravityModifier = 2;
             force = new Vector2(xForce, 0);
             dashForce = new Vector2(dForce, 0);
 
@@ -104,7 +112,7 @@ public class PlayerController1 : MonoBehaviour
             //Jump
             if (Input.GetButtonDown("Jump") && isOnGround && !GameManager.gameOver)
             {
-                force.y += jumpForce * 1000;
+                force.y += jumpForce * 1000*forceMultiplier;
                 isOnGround = false;
                 /*playerAnim.SetTrigger("Jump_trig");
                 dirtParticle.Stop();
@@ -226,6 +234,7 @@ public class PlayerController1 : MonoBehaviour
         {
             Debug.Log("Game Over");
             GameManager.gameOver = true;
+            gameOverOverlay.SetActive(true);
             /*playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
             explosionParticle.Play();

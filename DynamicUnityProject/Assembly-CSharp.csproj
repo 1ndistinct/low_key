@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ButtonPressedRestart.cs" />
     <Compile Include="Assets\CoinCounter.cs" />
     <Compile Include="Assets\EnergyBar.cs" />
     <Compile Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Scripts\CamerController.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\Shapes2DPrefs.cs" />
     <Compile Include="Assets\HealthBar.cs" />
     <Compile Include="Assets\HealthBarEnemy.cs" />
+    <Compile Include="Assets\LoadScene.cs" />
+    <Compile Include="Assets\OnEnviroLoad.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera2DFollow.cs" />
     <Compile Include="Assets\Scripts\Core\Fuzzy.cs" />
     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Assets\Scripts\UI\MetaGameController.cs" />
     <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />
     <Compile Include="Assets\Scripts\View\ParallaxLayer.cs" />
+    <Compile Include="Assets\SpawnSceneSpecific.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Free Asset Packs\Shapes2D\Shaders\Triangle.cginc" />
@@ -348,10 +352,10 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/PackageCache/com.unity.connect.share@2.0.3/Plugins/System.IO.Compression.FileSystem.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/PackageCache/com.unity.connect.share@2.0.3/Plugins/System.IO.Compression.FileSystem.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -708,64 +712,64 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Connect.Share.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Connect.Share.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Connect.Share.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InteractiveTutorials.Core">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InteractiveTutorials.Core.Scripts">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.Scripts.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.Scripts.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.InteractiveTutorialsFramework">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEditor.InteractiveTutorialsFramework.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEditor.InteractiveTutorialsFramework.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Coding Project/TheGingerBeardMen/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

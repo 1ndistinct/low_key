@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-
+    public static Transform PlayerCoords;
     public static GameManager Instance { get { return _instance; } }
 
     public static int Coins = 0;

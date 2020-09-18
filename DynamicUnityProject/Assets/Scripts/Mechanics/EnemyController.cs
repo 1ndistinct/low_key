@@ -101,6 +101,7 @@ namespace Platformer.Mechanics
 
         void Update()
         {
+            
             healthBar.setHealth(Health);
             if (path != null)
             {

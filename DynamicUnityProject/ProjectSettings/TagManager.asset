@@ -20,8 +20,8 @@ TagManager:
   - 
   - 
   - Background
-  - 
-  - 
+  - Mid
+  - Fore
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: foreground
     uniqueID: 4183371007
+    locked: 0
+  - name: Extraforeground
+    uniqueID: 1524052771
     locked: 0
