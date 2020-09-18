@@ -6,11 +6,13 @@ ScriptsOnlyBuild:
     - DetectCollisions
     - EnergyBar
     - HealthBar
+    - HealthBarEnemy
     - MoveForward
     - ObjectPooler
     - Platformer.Mechanics.AnimationController
     - Platformer.Mechanics.EnemyController
     - PlayerController1
+    - Shapes2D.Shape
     - SpawnManager
     - UnityStandardAssets._2D.Camera2DFollow
     - meleeAttack
@@ -29,10 +31,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -41,6 +41,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -83,61 +84,67 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 11232}
+    - Class: 114
       Script: {instanceID: 11258}
     - Class: 114
-      Script: {instanceID: 11548}
+      Script: {instanceID: 11290}
     - Class: 114
-      Script: {instanceID: 11600}
+      Script: {instanceID: 11550}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 11602}
     - Class: 114
-      Script: {instanceID: 11706}
+      Script: {instanceID: 11606}
     - Class: 114
-      Script: {instanceID: 11856}
+      Script: {instanceID: 11628}
     - Class: 114
-      Script: {instanceID: 11862}
+      Script: {instanceID: 11710}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 11860}
     - Class: 114
-      Script: {instanceID: 12238}
+      Script: {instanceID: 11866}
     - Class: 114
-      Script: {instanceID: 12414}
+      Script: {instanceID: 11908}
     - Class: 114
-      Script: {instanceID: 12614}
+      Script: {instanceID: 12200}
     - Class: 114
-      Script: {instanceID: 13224}
+      Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 13244}
+      Script: {instanceID: 12420}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 12620}
     - Class: 114
-      Script: {instanceID: 13342}
+      Script: {instanceID: 13230}
     - Class: 114
-      Script: {instanceID: 13472}
+      Script: {instanceID: 13250}
     - Class: 114
-      Script: {instanceID: 13584}
+      Script: {instanceID: 13262}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13348}
     - Class: 114
-      Script: {instanceID: 13764}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 13874}
+      Script: {instanceID: 13590}
     - Class: 114
-      Script: {instanceID: 13936}
+      Script: {instanceID: 13692}
     - Class: 114
-      Script: {instanceID: 14064}
+      Script: {instanceID: 13770}
     - Class: 114
-      Script: {instanceID: 14130}
+      Script: {instanceID: 13880}
     - Class: 114
-      Script: {instanceID: 14258}
+      Script: {instanceID: 13942}
     - Class: 114
-      Script: {instanceID: 14312}
+      Script: {instanceID: 14070}
     - Class: 114
-      Script: {instanceID: 24726}
+      Script: {instanceID: 14136}
     - Class: 114
-      Script: {instanceID: 24760}
+      Script: {instanceID: 14264}
     - Class: 114
-      Script: {instanceID: 28116}
+      Script: {instanceID: 14318}
+    - Class: 114
+      Script: {instanceID: 25280}
+    - Class: 114
+      Script: {instanceID: 37706}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -189,6 +196,12 @@ ScriptsOnlyBuild:
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
     className: ProceduralGridMover
+  - hash:
+      serializedVersion: 2
+      Hash: 3c199e39bb5076d6850173993d28915f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CoinCounter
   - hash:
       serializedVersion: 2
       Hash: 23d669c8bf2983ca4a3df160658318a6
@@ -333,6 +346,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 1028c39545bcfa841aaab54121e69a47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnergyBar
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -489,6 +508,12 @@ ScriptsOnlyBuild:
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
     className: SingleNodeBlocker
+  - hash:
+      serializedVersion: 2
+      Hash: 1028c39545bcfa841aaab54121e69a47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthBar
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -671,7 +696,7 @@ ScriptsOnlyBuild:
     className: SceneObjectGUIDComponent
   - hash:
       serializedVersion: 2
-      Hash: 95e0616e73085c33ebd55b9412a8450a
+      Hash: 0060661260f736da5ad87abd35aea474
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController1
@@ -1133,7 +1158,7 @@ ScriptsOnlyBuild:
     className: CinemachineHardLookAt
   - hash:
       serializedVersion: 2
-      Hash: 8eded3eb47732503b16e1c58b927f459
+      Hash: be643c3b687886c23073e0281ab5b727
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: EnemyController
@@ -1361,23 +1386,65 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 1028c39545bcfa841aaab54121e69a47
+      Hash: 32b7fd16fbe9b4b01b93a60540898b0a
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: HealthBar
+    namespaceName: Shapes2D
+    className: PacMan
   - hash:
       serializedVersion: 2
-      Hash: 1028c39545bcfa841aaab54121e69a47
+      Hash: 6eaf1d0e52260b4e8afc10d344b485ec
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnergyBar
+    namespaceName: Shapes2D
+    className: Shape
   - hash:
       serializedVersion: 2
-      Hash: 3c199e39bb5076d6850173993d28915f
+      Hash: b9048d3760274b9fd3dc94b75b3d0f96
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: Bird
+  - hash:
+      serializedVersion: 2
+      Hash: 32f9745511ca7a7c7e8c5ddb7449150c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: EffectDemo
+  - hash:
+      serializedVersion: 2
+      Hash: 85e08c0a0e50b7ba5d81e998d802d796
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: TapEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 8c1f4f5fb1724bfae2d1d4abaddf8d29
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: CoinCounter
+    className: Shapes2DPrefs
+  - hash:
+      serializedVersion: 2
+      Hash: fadd1716a5abb6124a2e032162c344e6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: Game
+  - hash:
+      serializedVersion: 2
+      Hash: 220bd265f54cc4cee8f1539ad2b2c64a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: Spawner
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Shapes2D
+    className: DragCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthBarEnemy
   platform: 19
   scenePathNames:
   - Assets/Scenes/TestScene.unity
-  playerPath: D:/Coding Project/TheGingerBeardMen/low_key/Builds/DynamicUnityProject.exe
+  playerPath: D:/Coding Project/TheGingerBeardMen/low_key/Builds/DynamicUnityProject_Data/DynamicUnityProject.exe

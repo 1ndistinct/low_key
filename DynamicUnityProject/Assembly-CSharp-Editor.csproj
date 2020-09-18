@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\PatrolPathEditor.cs" />
+    <Compile Include="Assets\Free Asset Packs\Shapes2D\Editor\CustomHandles.cs" />
+    <Compile Include="Assets\Free Asset Packs\Shapes2D\Editor\MenuItems.cs" />
+    <Compile Include="Assets\Free Asset Packs\Shapes2D\Editor\ShapeEditor.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
