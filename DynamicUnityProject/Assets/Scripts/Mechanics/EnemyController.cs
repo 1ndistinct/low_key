@@ -26,6 +26,7 @@ namespace Platformer.Mechanics
         //Variables
         public static float MaxHealth = 0.2f;
         public static float Health = 0.2f;
+        public float EnemyHealth = 0.2f;
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
@@ -55,7 +56,7 @@ namespace Platformer.Mechanics
                 dir = dir.normalized;
                 Rigidbody2D rbb = collision.gameObject.GetComponent<Rigidbody2D>();
                 PlayerController1.doActive = false;
-                rbb.AddForce(dir * 300, ForceMode2D.Impulse);
+                rbb.AddForce(dir * 600, ForceMode2D.Impulse);
                 GameManager.TakeDamage(0.1f);
                 
                 PlayerController1.doActive = true;
@@ -101,7 +102,7 @@ namespace Platformer.Mechanics
 
         void Update()
         {
-            
+            Health = EnemyHealth;
             healthBar.setHealth(Health);
             if (path != null)
             {
@@ -109,7 +110,7 @@ namespace Platformer.Mechanics
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
             }
             
-
+           
         }
 
     }

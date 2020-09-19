@@ -63,6 +63,7 @@ public class PlayerController1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         rb.gravityScale =gravity* gravityModifier;
         energyBar.setEnergy(GameManager.currentEnergy);
         healthBar.setHealth(GameManager.currentHealth);
@@ -95,7 +96,7 @@ public class PlayerController1 : MonoBehaviour
             else
                 dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
             if (!isOnGround)
-                gravityModifier = 2;
+                gravityModifier = 9;
             force = new Vector2(xForce, 0);
             dashForce = new Vector2(dForce, 0);
 
@@ -157,7 +158,7 @@ public class PlayerController1 : MonoBehaviour
 
             //Move
             if (!GameManager.gameOver)
-                rb.AddForce(force);
+                rb.AddForce(force,ForceMode2D.Force);
 
 
 
@@ -218,8 +219,16 @@ public class PlayerController1 : MonoBehaviour
 
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+        }
+        
+    }
 
- 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Checks if player is on ground to jump

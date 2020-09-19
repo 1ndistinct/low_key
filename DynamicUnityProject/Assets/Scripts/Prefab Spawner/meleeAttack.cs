@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Platformer.Mechanics;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class meleeAttack : MonoBehaviour
 {
     Transform player;
     public float targetTime = 0.5f;
-
+    public float MeleeDamage;
+    private EnemyController enemyController;
     void timerEnded()
     {
         gameObject.SetActive(false);
@@ -15,8 +17,8 @@ public class meleeAttack : MonoBehaviour
 
 
 
-// Start is called before the first frame update
-void Start()
+    // Start is called before the first frame update
+    void Awake()
     {
         
     }
@@ -32,5 +34,12 @@ void Start()
         }
         
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) {
+            enemyController = gameObject.GetComponent<EnemyController>();
+            enemyController.EnemyHealth -= MeleeDamage;
+        }
     }
 }
