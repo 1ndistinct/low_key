@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     public static int Coins = 0;
-    public static float currentHealth, currentEnergy;
+    public static float currentHealth, currentEnergy ;
     public static float moveSpeed = 1f;
     public static float shield = 0.2f;
     public static bool gameOver = false;

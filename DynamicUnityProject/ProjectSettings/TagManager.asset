@@ -10,6 +10,12 @@ TagManager:
   - Wall
   - melee
   - projectile
+  - Roof
+  - MovingPlatform
+  - Platform
+  - Enemy
+  - EnemyProjectile
+  - ImmediateDeath
   layers:
   - Default
   - TransparentFX

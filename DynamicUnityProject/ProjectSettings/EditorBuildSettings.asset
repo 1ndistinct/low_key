@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerNeverUnload.unity
     guid: 56c32dbb28495de4296dbd26bd306dc0
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: 51698e10099f78b4c86058401b076b35
   m_configObjects: {}

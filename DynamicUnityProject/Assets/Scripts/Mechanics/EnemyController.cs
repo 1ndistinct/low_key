@@ -70,35 +70,6 @@ namespace Platformer.Mechanics
 
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.CompareTag("melee"))
-            {
-                
-                if (Health-0.1f <= 0)
-                {
-                    Health = 0;
-                    gameObject.SetActive(false);
-                    GameManager.AddEnergy(0.25f);
-                    Destroy(collision.gameObject);
-                }
-                else
-                    Health -= 0.1f;
-            }
-            if (collision.gameObject.CompareTag("projectile"))
-            {
-
-                if (Health - 0.05f <= 0)
-                {
-                    Health = 0;
-                    gameObject.SetActive(false);
-                    GameManager.AddEnergy(0.25f);
-                    Destroy(collision.gameObject);
-                }
-                else
-                    Health -= 0.05f;
-            }
-        }
 
         void Update()
         {

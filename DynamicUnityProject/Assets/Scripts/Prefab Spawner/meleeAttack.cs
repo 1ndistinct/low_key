@@ -7,7 +7,7 @@ public class meleeAttack : MonoBehaviour
 {
     Transform player;
     public float targetTime = 0.5f;
-    public float MeleeDamage;
+    public float MeleeDamage = 0.1f;
     private EnemyController enemyController;
     void timerEnded()
     {
@@ -35,11 +35,21 @@ public class meleeAttack : MonoBehaviour
         
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy")) {
-            enemyController = gameObject.GetComponent<EnemyController>();
-            enemyController.EnemyHealth -= MeleeDamage;
+       
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+
+            if (other.gameObject.GetComponent<EnemyController>().EnemyHealth - 0.1f <= 0)
+            {
+                other.gameObject.GetComponent<EnemyController>().EnemyHealth = 0;
+                other.gameObject.SetActive(false);
+                GameManager.AddEnergy(0.25f);
+
+            }
+            else
+                other.gameObject.GetComponent<EnemyController>().EnemyHealth -= 0.1f;
         }
     }
 }

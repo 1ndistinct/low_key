@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Platformer.Mechanics;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets._2D;
@@ -8,6 +9,7 @@ public class DestroyOutOfBounds : MonoBehaviour
     private float topBound = 30;
     private float lowerBound = -10;
     public Transform mainCamera;
+    private EnemyController enemyController;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +35,27 @@ public class DestroyOutOfBounds : MonoBehaviour
         }
         else if (transform.position.x < lowerBound)
         {
-            Debug.Log("Game Over!");
+            
             Destroy(gameObject);
             //gameObject.SetActive(false);
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (other.gameObject.GetComponent<EnemyController>().EnemyHealth - 0.2f <= 0)
+            {
+                other.gameObject.GetComponent<EnemyController>().EnemyHealth = 0;
+                other.gameObject.SetActive(false);
+                GameManager.AddEnergy(0.25f);
+            }
+            else
+            {
+                other.gameObject.GetComponent<EnemyController>().EnemyHealth -= 0.2f;
+            }
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Platformer.Mechanics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerController1 : MonoBehaviour
@@ -23,8 +25,8 @@ public class PlayerController1 : MonoBehaviour
 
 
     //User Variables
-    public float maxHealth = 1;
-    public float maxEnergy = 1;
+    public static float maxHealth = 1;
+    public static float maxEnergy = 1;
     
     public HealthBar healthBar;
     public EnergyBar energyBar;
@@ -50,7 +52,7 @@ public class PlayerController1 : MonoBehaviour
         //GameObject.DontDestroyOnLoad(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
         
-        //playerAnim = GetComponent<Animator>();
+        playerAnim = GetComponent<Animator>();
         //playerAudio = GetComponent<AudioSource>();
         GameManager.currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
@@ -159,6 +161,7 @@ public class PlayerController1 : MonoBehaviour
             //Move
             if (!GameManager.gameOver)
                 rb.AddForce(force,ForceMode2D.Force);
+            
 
 
 
@@ -216,18 +219,57 @@ public class PlayerController1 : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             GameManager.Coins += 1;
+        }
+
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            isOnGround = true;
+            print("on");
+           // gameObject.transform.parent = collision.gameObject.transform;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            playerAnim.SetTrigger("DamageTaken");
+        }
+        if (collision.gameObject.CompareTag("ImmediateDeath"))
+        {
+            playerAnim.SetTrigger("DamageTaken");
+            GameOver();
+            Thread.Sleep(10);
+            gameObject.SetActive(false);
 
         }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
+
         }
-        
+
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            //gameObject.transform.parent = null;
+            isOnGround = false;
+            print("off");
+        }
+
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnGround = false;
+        }
+
     }
 
+    private void GameOver() 
+    {
+        GameManager.gameOver = true;
+        gameOverOverlay.SetActive(true);
+        GameManager.currentHealth = 0f;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -237,13 +279,15 @@ public class PlayerController1 : MonoBehaviour
             isOnGround = true;
            // dirtParticle.Play();
         }
+
+        
         //
         //End Game
         if (GameManager.currentHealth  <=  0 )
         {
-            Debug.Log("Game Over");
-            GameManager.gameOver = true;
-            gameOverOverlay.SetActive(true);
+
+            GameOver();
+            
             /*playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
             explosionParticle.Play();

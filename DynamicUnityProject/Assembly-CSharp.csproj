@@ -88,6 +88,8 @@
     <Compile Include="Assets\HealthBarEnemy.cs" />
     <Compile Include="Assets\LoadScene.cs" />
     <Compile Include="Assets\OnEnviroLoad.cs" />
+    <Compile Include="Assets\PlatformMove.cs" />
+    <Compile Include="Assets\ProjectileTrapShoot.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera2DFollow.cs" />
     <Compile Include="Assets\Scripts\Core\Fuzzy.cs" />
     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />
     <Compile Include="Assets\Scripts\View\ParallaxLayer.cs" />
     <Compile Include="Assets\SpawnSceneSpecific.cs" />
+    <Compile Include="Assets\SpriteDestroyer.cs" />
     <Compile Include="Assets\TestSceneOnEnviroLoad.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

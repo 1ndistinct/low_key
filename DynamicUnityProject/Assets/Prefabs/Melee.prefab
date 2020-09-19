@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTime: 1
+  MeleeDamage: 0
 --- !u!1001 &2564827913829544675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +25,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 362803240603063502, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7,
+        type: 3}
+      propertyPath: m_TagString
+      value: melee
       objectReference: {fileID: 0}
     - target: {fileID: 1115910912496124373, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7,
         type: 3}
@@ -113,6 +119,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -1296203101474391722, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7, type: 3}
     - {fileID: -940700538900327135, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7, type: 3}
+    - {fileID: -615539796920994014, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 89ffeb9a0e7b1c04d982ca021ddfa8a7, type: 3}
 --- !u!1 &2778992300591769133 stripped
 GameObject:
