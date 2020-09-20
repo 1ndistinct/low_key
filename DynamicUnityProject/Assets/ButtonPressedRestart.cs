@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonPressedRestart : MonoBehaviour
 {
-    public string scene = "SpawnScene";
+    public string scene;
     public void Respawn()
     {
+        
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
         GameManager.gameOver = false;
     }

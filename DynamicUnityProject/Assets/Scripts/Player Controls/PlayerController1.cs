@@ -30,7 +30,7 @@ public class PlayerController1 : MonoBehaviour
     
     public HealthBar healthBar;
     public EnergyBar energyBar;
-
+    public GameObject mainCamera;
     private Animator playerAnim;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
@@ -49,6 +49,8 @@ public class PlayerController1 : MonoBehaviour
    
     void Start()
     {
+        mainCamera = GameObject.Find("Main Camera");
+
         //GameObject.DontDestroyOnLoad(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
         
@@ -98,7 +100,7 @@ public class PlayerController1 : MonoBehaviour
             else
                 dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
             if (!isOnGround)
-                gravityModifier = 9;
+                gravityModifier = 20;
             force = new Vector2(xForce, 0);
             dashForce = new Vector2(dForce, 0);
 
@@ -230,6 +232,7 @@ public class PlayerController1 : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Platform"))
         {
+           
             isOnGround = true;
             
             // gameObject.transform.parent = collision.gameObject.transform;
@@ -247,6 +250,13 @@ public class PlayerController1 : MonoBehaviour
             gameObject.SetActive(false);
 
         }
+        if (collision.gameObject.CompareTag("Far View"))
+        {
+            mainCamera.GetComponent<Camera>().orthographicSize = 20f;
+
+        }
+
+
 
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -266,16 +276,39 @@ public class PlayerController1 : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Platform"))
         {
+            
             isOnGround = false;
+
+        }
+        if (collision.gameObject.CompareTag("Far View"))
+        {
+            mainCamera.GetComponent<Camera>().orthographicSize = 15f;
+
         }
 
     }
+
+
 
     private void GameOver() 
     {
         GameManager.gameOver = true;
         gameOverOverlay.SetActive(true);
         GameManager.currentHealth = 0f;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Moving Platform"))
+        {
+            isOnGround = true;
+            Vector2 dir = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
+            // We then get the opposite (-Vector3) and normalize it
+            dir = dir.normalized;
+            if (dir.y > 0)
+                rb.AddForce(Vector2.down*rb.gravityScale, ForceMode2D.Impulse);
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -286,8 +319,18 @@ public class PlayerController1 : MonoBehaviour
             isOnGround = true;
            // dirtParticle.Play();
         }
+        if (collision.gameObject.CompareTag("PORTAL"))
+        {
+            isOnGround = false;
+
+        }
 
         
+        
+        
+
+        PlayerController1.doActive = true;
+
         //
         //End Game
         if (GameManager.currentHealth  <=  0 )

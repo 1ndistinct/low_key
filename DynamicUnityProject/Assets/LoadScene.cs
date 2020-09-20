@@ -25,6 +25,8 @@ public class LoadScene : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("SpawnScene");
             SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            collision.gameObject.transform.position = new Vector3(-24.4f,4.5f,0f);
+            
         }
     }
 }

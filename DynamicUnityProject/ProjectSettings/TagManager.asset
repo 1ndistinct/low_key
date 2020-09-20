@@ -16,6 +16,8 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - ImmediateDeath
+  - PORTAL
+  - Far View
   layers:
   - Default
   - TransparentFX
