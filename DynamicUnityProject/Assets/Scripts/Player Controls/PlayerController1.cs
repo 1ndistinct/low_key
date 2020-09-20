@@ -228,6 +228,13 @@ public class PlayerController1 : MonoBehaviour
            // gameObject.transform.parent = collision.gameObject.transform;
         }
 
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnGround = true;
+            
+            // gameObject.transform.parent = collision.gameObject.transform;
+        }
+
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyProjectile"))
         {
             playerAnim.SetTrigger("DamageTaken");

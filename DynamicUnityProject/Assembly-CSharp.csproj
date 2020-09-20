@@ -169,6 +169,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Shader\NormalMappedTileAnimated.shader" />
+    <None Include="Assets\SkyBackgroundBlue.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Free Asset Packs\Shapes2D\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
