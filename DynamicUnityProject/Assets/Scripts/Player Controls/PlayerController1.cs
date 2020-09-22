@@ -31,7 +31,7 @@ public class PlayerController1 : MonoBehaviour
     public HealthBar healthBar;
     public EnergyBar energyBar;
     public GameObject mainCamera;
-    private Animator playerAnim;
+    private Animator playerAnim,cameraAnim;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public AudioClip jumpSound;
@@ -53,7 +53,7 @@ public class PlayerController1 : MonoBehaviour
 
         //GameObject.DontDestroyOnLoad(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
-        
+        cameraAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
         playerAnim = GetComponent<Animator>();
         //playerAudio = GetComponent<AudioSource>();
         GameManager.currentHealth = maxHealth;
@@ -63,11 +63,18 @@ public class PlayerController1 : MonoBehaviour
         gravity = rb.gravityScale;
 
     }
-
+    float time = 1f;
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
+        time -= Time.deltaTime;
+        if (time <= 0) { 
+            GameManager.AddEnergy(0.1f);
+            time = 1f;
+        }
+        if (GameManager.currentHealth <= 0)
+            GameOver();
+
         rb.gravityScale =gravity* gravityModifier;
         energyBar.setEnergy(GameManager.currentEnergy);
         healthBar.setHealth(GameManager.currentHealth);
@@ -217,6 +224,22 @@ public class PlayerController1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Checks if player is on ground to jump
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            // dirtParticle.Play();
+        }
+        if (collision.gameObject.CompareTag("PORTAL"))
+        {
+            isOnGround = false;
+
+        }
+        if (collision.gameObject.CompareTag("Far View"))
+        {
+            cameraAnim.SetTrigger("ZoomIn");
+            cameraAnim.ResetTrigger("ZoomOut");
+        }
         if (collision.gameObject.CompareTag("Coin Pickup"))
         {
             collision.gameObject.SetActive(false);
@@ -250,17 +273,24 @@ public class PlayerController1 : MonoBehaviour
             gameObject.SetActive(false);
 
         }
-        if (collision.gameObject.CompareTag("Far View"))
-        {
-            mainCamera.GetComponent<Camera>().orthographicSize = 20f;
 
-        }
 
 
 
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Moving Platform"))
+            isOnGround = true;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Far View"))
+        {
+            cameraAnim.SetTrigger("ZoomOut");
+            cameraAnim.ResetTrigger("ZoomIn");
+        }
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
@@ -271,7 +301,6 @@ public class PlayerController1 : MonoBehaviour
         {
             //gameObject.transform.parent = null;
             isOnGround = false;
-            print("off");
         }
 
         if (collision.gameObject.CompareTag("Platform"))
@@ -280,11 +309,7 @@ public class PlayerController1 : MonoBehaviour
             isOnGround = false;
 
         }
-        if (collision.gameObject.CompareTag("Far View"))
-        {
-            mainCamera.GetComponent<Camera>().orthographicSize = 15f;
 
-        }
 
     }
 
@@ -295,59 +320,33 @@ public class PlayerController1 : MonoBehaviour
         GameManager.gameOver = true;
         gameOverOverlay.SetActive(true);
         GameManager.currentHealth = 0f;
+        /*playerAnim.SetBool("Death_b", true);
+           playerAnim.SetInteger("DeathType_int", 1);
+           explosionParticle.Play();
+           dirtParticle.Stop();
+           playerAudio.PlayOneShot(crashSound, 1.0f);*/
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Moving Platform"))
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("MovingPlatform")) //|| collision.gameObject.CompareTag("Ground")
         {
-            isOnGround = true;
+            
             Vector2 dir = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
             // We then get the opposite (-Vector3) and normalize it
             dir = dir.normalized;
-            if (dir.y > 0)
-                rb.AddForce(Vector2.down*rb.gravityScale, ForceMode2D.Impulse);
-
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Checks if player is on ground to jump
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-           // dirtParticle.Play();
-        }
-        if (collision.gameObject.CompareTag("PORTAL"))
-        {
-            isOnGround = false;
-
-        }
-
-        
-        
-        
-
-        PlayerController1.doActive = true;
-
-        //
-        //End Game
-        if (GameManager.currentHealth  <=  0 )
-        {
-
-            GameOver();
+            print(dir.x+":"+dir.y);
+            if ((dir.x <-0.4 || dir.x > 0.4) && dir.y > -1)
+            {
+                print("Force");
+                isOnGround = false;
+                rb.AddForce(Vector2.down * rb.gravityScale*50, ForceMode2D.Force);
+            }
             
-            /*playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);*/
         }
-        //
-       
-        //
-
-
     }
+
+
+
+
 }

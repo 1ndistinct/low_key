@@ -84,9 +84,11 @@
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\PolyMap.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\Shape.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\Shapes2DPrefs.cs" />
+    <Compile Include="Assets\GameOver.cs" />
     <Compile Include="Assets\HealthBar.cs" />
     <Compile Include="Assets\HealthBarEnemy.cs" />
     <Compile Include="Assets\LoadScene.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\OnEnviroLoad.cs" />
     <Compile Include="Assets\PlatformMove.cs" />
     <Compile Include="Assets\ProjectileTrapShoot.cs" />

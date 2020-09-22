@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
@@ -15,7 +16,7 @@ namespace Platformer.Mechanics
         public PatrolPath path;
         public AudioClip ouch;
         public HealthBar healthBar;
-
+        public GameObject parent;
         internal PatrolPath.Mover mover;
         internal AnimationController control;
         internal Collider2D _collider;
@@ -24,13 +25,14 @@ namespace Platformer.Mechanics
 
 
         //Variables
-        public static float MaxHealth = 0.2f;
-        public static float Health = 0.2f;
-        public float EnemyHealth = 0.2f;
+        public static float MaxHealth = 0.8f;
+        public static float Health = 0.8f;
+        public float EnemyHealth = 0.8f;
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
         {
+            
             healthBar.setMaxHealth(Health);
             control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
@@ -70,7 +72,40 @@ namespace Platformer.Mechanics
 
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("projectile"))
+            {
+                if (EnemyHealth - 0.2f <= 0)
+                {
+                    gameObject.SetActive(false);
+                    EnemyHealth = 0f;
+                    parent.GetComponent<AIPath>().enabled = false;
+                    GameManager.AddEnergy(0.25f);
+                }
+                else
+                {
+                    EnemyHealth -= 0.2f;
+                }
+                Destroy(other.gameObject);
+                
+            }
+            if (other.gameObject.CompareTag("melee"))
+            {
 
+                if (EnemyHealth - 0.1f <= 0)
+                {
+                    EnemyHealth = 0;
+                    gameObject.SetActive(false);
+                    parent.GetComponent<AIPath>().enabled = false;
+                    GameManager.AddEnergy(0.25f);
+
+                }
+                else
+                    EnemyHealth -= 0.1f;
+                
+            }
+        }
         void Update()
         {
             Health = EnemyHealth;
@@ -80,6 +115,8 @@ namespace Platformer.Mechanics
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
             }
+            if (EnemyHealth <= 0)
+                parent.GetComponent<AIPath>().enabled = false;
             
            
         }

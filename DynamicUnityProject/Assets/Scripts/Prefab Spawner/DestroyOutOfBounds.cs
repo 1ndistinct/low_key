@@ -41,21 +41,5 @@ public class DestroyOutOfBounds : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            if (other.gameObject.GetComponent<EnemyController>().EnemyHealth - 0.2f <= 0)
-            {
-                other.gameObject.GetComponent<EnemyController>().EnemyHealth = 0;
-                other.gameObject.SetActive(false);
-                GameManager.AddEnergy(0.25f);
-            }
-            else
-            {
-                other.gameObject.GetComponent<EnemyController>().EnemyHealth -= 0.2f;
-            }
-            Destroy(gameObject);
-        }
-    }
+
 }

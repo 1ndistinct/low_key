@@ -17,6 +17,7 @@ namespace UnityStandardAssets._2D
         private Vector3 m_CurrentVelocity;
         private Vector3 m_LookAheadPos;
         public float offset;
+        
         // Use this for initialization
         private void Start()
         {
@@ -25,6 +26,7 @@ namespace UnityStandardAssets._2D
             m_LastTargetPosition = target.position;
             m_OffsetZ = (transform.position - target.position).z;
             transform.parent = null;
+           
         }
 
 
