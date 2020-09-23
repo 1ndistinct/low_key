@@ -15,7 +15,7 @@ public class PlayerController1 : MonoBehaviour
     private float gravity;
     public bool isOnGround = true;
     public float forceMultiplier;
-
+    float t = 1, MaxGravity = 50;
     public GameObject gameOverOverlay;
     
     //
@@ -25,7 +25,7 @@ public class PlayerController1 : MonoBehaviour
 
 
     //User Variables
-    public static float maxHealth = 1;
+    public static float maxHealth = 10;
     public static float maxEnergy = 1;
     
     public HealthBar healthBar;
@@ -63,22 +63,29 @@ public class PlayerController1 : MonoBehaviour
         gravity = rb.gravityScale;
 
     }
-    float time = 1f;
+    
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
-        if (time <= 0) { 
-            GameManager.AddEnergy(0.1f);
-            time = 1f;
-        }
         if (GameManager.currentHealth <= 0)
             GameOver();
 
         rb.gravityScale =gravity* gravityModifier;
         energyBar.setEnergy(GameManager.currentEnergy);
         healthBar.setHealth(GameManager.currentHealth);
-        
+
+
+        if (isOnGround)
+        {
+            gravityModifier = 1;
+        }
+        else
+        {
+            if (gravityModifier <= MaxGravity)
+            {
+                gravityModifier += 1f;
+            }
+        }
         /*//Restricts movement on x axis past this point
         if (transform.position.x < -mainCamera.transform.position.x)
             transform.position = new Vector2(-xRange, transform.position.y);
@@ -95,10 +102,20 @@ public class PlayerController1 : MonoBehaviour
     }
 
     private void getAction() {
-
+        
+        //if (!isOnGround)
+            //gravityModifier = 20;
+        t -= Time.deltaTime;
+        if (t <= 0)
+        {
+            GameManager.AddEnergy(0.1f);
+/*            if (!isOnGround)
+                gravityModifier += 10;*/
+            t = 1f;
+        }
+        
         if (doActive)
         {
-            gravityModifier = 1;
             xInput = Input.GetAxis("Horizontal");
             yInput = Input.GetAxis("Vertical");
             xForce = xInput * GameManager.moveSpeed * 60000 * Time.deltaTime*forceMultiplier;
@@ -106,8 +123,8 @@ public class PlayerController1 : MonoBehaviour
                 dForce = GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
             else
                 dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
-            if (!isOnGround)
-                gravityModifier = 20;
+           
+            
             force = new Vector2(xForce, 0);
             dashForce = new Vector2(dForce, 0);
 
@@ -313,8 +330,18 @@ public class PlayerController1 : MonoBehaviour
 
     }
 
-
-
+    public void PlayerTakesDamage(float Damage, float stunDuration)
+    {
+        GameManager.currentHealth -= Damage;
+        playerAnim.SetTrigger("DamageTaken");
+        StartCoroutine(PlayerStunned(stunDuration));
+    }
+    IEnumerator PlayerStunned(float stunDuration)
+    {
+        doActive = false;
+        yield return new WaitForSeconds(stunDuration);
+        doActive = true;
+    }
     private void GameOver() 
     {
         GameManager.gameOver = true;

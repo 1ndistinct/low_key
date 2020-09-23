@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
+    public Transform EnemyPosition;
     public static ObjectPooler SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
@@ -22,11 +23,19 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < amountToPool; i++)
         {
             GameObject obj = (GameObject)Instantiate(objectToPool);
+            obj.transform.position = EnemyPosition.position + new Vector3(0,0.7f,0);
             obj.SetActive(false);
             pooledObjects.Add(obj);
             obj.transform.SetParent(this.transform); // set as children of Spawn Manager
         }
     }
+
+    private void Update()
+    {
+
+    }
+
+
 
     public GameObject GetPooledObject()
     {

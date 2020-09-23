@@ -26,14 +26,17 @@ public class PlatformMove : MonoBehaviour
         if (transform.position == position2.position)
         {
             nextPosition = position1;
+            
         }
         if (transform.position == position1.position)
         {
             nextPosition = position2;
+           
         }
         desiredPosition = Vector2.MoveTowards(transform.position, nextPosition.position, speed * Time.deltaTime);
         moveDelta = new Vector3(desiredPosition.x,desiredPosition.y,0f) - transform.position;
-        transform.position = desiredPosition; 
+        transform.position = desiredPosition;
+        
 
 
 

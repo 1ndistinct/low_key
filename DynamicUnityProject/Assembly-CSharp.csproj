@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\ButtonPressedRestart.cs" />
     <Compile Include="Assets\CoinCounter.cs" />
+    <Compile Include="Assets\EnemyDestroyOutOfBound.cs" />
+    <Compile Include="Assets\EnemyProjectileMoveStraight.cs" />
     <Compile Include="Assets\EnergyBar.cs" />
     <Compile Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Scripts\CamerController.cs" />
     <Compile Include="Assets\Free Asset Packs\Mod Assets\Mod Resources\Scripts\Backend\TemplateEditorDetection.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Assets\LoadScene.cs" />
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\OnEnviroLoad.cs" />
+    <Compile Include="Assets\PlantEnemyController.cs" />
     <Compile Include="Assets\PlatformMove.cs" />
     <Compile Include="Assets\ProjectileTrapShoot.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera2DFollow.cs" />
