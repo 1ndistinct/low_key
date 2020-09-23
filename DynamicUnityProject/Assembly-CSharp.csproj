@@ -63,11 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BossAttackController.cs" />
     <Compile Include="Assets\ButtonPressedRestart.cs" />
     <Compile Include="Assets\CoinCounter.cs" />
     <Compile Include="Assets\EnemyDestroyOutOfBound.cs" />
     <Compile Include="Assets\EnemyProjectileMoveStraight.cs" />
     <Compile Include="Assets\EnergyBar.cs" />
+    <Compile Include="Assets\FlameDamage.cs" />
     <Compile Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Scripts\CamerController.cs" />
     <Compile Include="Assets\Free Asset Packs\Mod Assets\Mod Resources\Scripts\Backend\TemplateEditorDetection.cs" />
     <Compile Include="Assets\Free Asset Packs\Mod Assets\Mod Resources\Scripts\Platformer\EmitParticlesOnLand.cs" />

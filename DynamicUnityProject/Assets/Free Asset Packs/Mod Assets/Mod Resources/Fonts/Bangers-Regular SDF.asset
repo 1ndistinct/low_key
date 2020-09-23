@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hashCode: -1147108856
   material: {fileID: 21962088495682642}
-  materialHashCode: -48200061
+  materialHashCode: -1546211160
   m_Version: 1.1.0
   m_SourceFontFileGUID: c455800d5972b405c87596cc71cfd0f8
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
     m_LineHeight: 40.4375
     m_AscentLine: 33.5625
     m_CapLine: 28.124998
-    m_MeanLine: 0
+    m_MeanLine: 27.749998
     m_Baseline: 0
     m_DescentLine: -6.9375
     m_SuperscriptOffset: 33.5625
@@ -3807,6 +3807,7 @@ MonoBehaviour:
   m_AtlasTextures:
   - {fileID: 28924146404686464}
   m_AtlasTextureIndex: 0
+  m_IsMultiAtlasTexturesEnabled: 0
   m_UsedGlyphRects: []
   m_FreeGlyphRects: []
   m_fontInfo:
@@ -5798,7 +5799,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Bangers-Regular SDF Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -5908,6 +5909,8 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 0
+  m_IgnoreMasterTextureLimit: 0
+  m_IsPreProcessed: 0
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0
