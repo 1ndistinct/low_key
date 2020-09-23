@@ -41,7 +41,7 @@ public class PlayerController1 : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject meleePrefab;
   
-    public static bool right = true;
+    public static bool right ;
     public int playerOrientation; //1--> Right facing  -1 --> Left Facing
     // Start is called before the first frame update
     public static bool doActive = true;
@@ -50,7 +50,7 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
-
+        right = true;
         //GameObject.DontDestroyOnLoad(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
         cameraAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -280,7 +280,7 @@ public class PlayerController1 : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Moving Platform"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("MovingPlatform"))
             isOnGround = true;
     }
     private void OnTriggerExit2D(Collider2D collision)

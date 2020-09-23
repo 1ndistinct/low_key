@@ -1753,4 +1753,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/TestScene.unity
   - Assets/Scenes/PlayerNeverUnload.unity
   - Assets/Scenes/LevelOne.unity
-  playerPath: D:/Coding Project/TheGingerBeardMen/low_key/Builds/Build 1/DynamicUnityProject.exe
+  playerPath: C:/Users/paulm/Documents/GitHub/low_key/DynamicUnityProject/Builds/DynamicUnityProject.exe
