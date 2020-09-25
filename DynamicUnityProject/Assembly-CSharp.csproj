@@ -63,9 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AITrigger.cs" />
     <Compile Include="Assets\BossAttackController.cs" />
     <Compile Include="Assets\ButtonPressedRestart.cs" />
-    <Compile Include="Assets\CoinCounter.cs" />
+    <Compile Include="Assets\ChainPack\Chain2D\scripts\Chain.cs" />
+    <Compile Include="Assets\ChainPack\Chain2D\scripts\ChainController.cs" />
+    <Compile Include="Assets\ChainPack\Chain2D\scripts\Link.cs" />
+    <Compile Include="Assets\ChainPack\scriptsOther\CutMouse.cs" />
     <Compile Include="Assets\EnemyDestroyOutOfBound.cs" />
     <Compile Include="Assets\EnemyProjectileMoveStraight.cs" />
     <Compile Include="Assets\EnergyBar.cs" />
@@ -88,16 +92,21 @@
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\PolyMap.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\Shape.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Scripts\Shapes2DPrefs.cs" />
+    <Compile Include="Assets\Free Pixel Art Forest\Demo\MoveBackground.cs" />
     <Compile Include="Assets\GameOver.cs" />
     <Compile Include="Assets\GuiControls.cs" />
     <Compile Include="Assets\HealthBar.cs" />
     <Compile Include="Assets\HealthBarEnemy.cs" />
     <Compile Include="Assets\LoadScene.cs" />
     <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Objects\Resource\PurpleResourceCounter.cs" />
+    <Compile Include="Assets\Objects\Resource\ResourceOrbs.cs" />
+    <Compile Include="Assets\Objects\Resource\ResourceScript.cs" />
     <Compile Include="Assets\OnEnviroLoad.cs" />
     <Compile Include="Assets\PlantEnemyController.cs" />
     <Compile Include="Assets\PlatformMove.cs" />
     <Compile Include="Assets\ProjectileTrapShoot.cs" />
+    <Compile Include="Assets\RopeAnimationTrigger.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera2DFollow.cs" />
     <Compile Include="Assets\Scripts\Core\Fuzzy.cs" />
     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
@@ -133,6 +142,7 @@
     <Compile Include="Assets\Scripts\Mechanics\VictoryZone.cs" />
     <Compile Include="Assets\Scripts\Model\PlatformerModel.cs" />
     <Compile Include="Assets\Scripts\Player Controls\PlayerController1.cs" />
+    <Compile Include="Assets\Scripts\Player Controls\PlayerController1Older.cs" />
     <Compile Include="Assets\Scripts\Player Controls\PlayerHealthTakeDamage.cs" />
     <Compile Include="Assets\Scripts\Player Controls\TimerScript.cs" />
     <Compile Include="Assets\Scripts\Prefab Spawner\DestroyOutOfBounds.cs" />
@@ -145,9 +155,11 @@
     <Compile Include="Assets\Scripts\UI\MetaGameController.cs" />
     <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />
     <Compile Include="Assets\Scripts\View\ParallaxLayer.cs" />
+    <Compile Include="Assets\SkillButtonSelected.cs" />
     <Compile Include="Assets\SpawnSceneSpecific.cs" />
     <Compile Include="Assets\SpriteDestroyer.cs" />
     <Compile Include="Assets\TestSceneOnEnviroLoad.cs" />
+    <None Include="Assets\ChainPack\Chain2D\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Free Asset Packs\Shapes2D\Shaders\Triangle.cginc" />
@@ -156,6 +168,7 @@
     <None Include="Assets\Free Asset Packs\Shapes2D\Shaders\Ellipse.cginc" />
     <None Include="Assets\Free Asset Packs\Shapes2D\Shaders\Shape.shader" />
     <None Include="Assets\Free Asset Packs\BayatGames\Free Platform Game Assets\Readme.txt" />
+    <None Include="Assets\Free Pixel Art Forest\Contact.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\PlatformerMicrogame_README.txt" />
     <None Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Shader\NormalMappedSprite-Animated.shader" />
@@ -173,13 +186,16 @@
     <None Include="Assets\Prefabs\Gradient Sky Shader.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Free Asset Packs\Shapes2D\changelog.txt" />
+    <None Include="Assets\Free Pixel Art Forest\Lisense.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Free Asset Packs\Shapes2D\Shaders\Path.cginc" />
+    <None Include="Assets\ChainPack\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Free Asset Packs\Free Asset - 2D Handcrafted Art\Shader\NormalMappedTileAnimated.shader" />
     <None Include="Assets\SkyBackgroundBlue.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Free Pixel Art Forest\readme.txt" />
     <None Include="Assets\Free Asset Packs\Shapes2D\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">

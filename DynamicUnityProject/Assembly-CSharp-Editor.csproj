@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChainPack\Chain2D\Editor\ChainEditor.cs" />
     <Compile Include="Assets\Editor\PatrolPathEditor.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Editor\CustomHandles.cs" />
     <Compile Include="Assets\Free Asset Packs\Shapes2D\Editor\MenuItems.cs" />

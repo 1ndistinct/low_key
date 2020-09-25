@@ -21,7 +21,7 @@ public class PlantEnemyController : MonoBehaviour
     {
         if (PlayerPosition.position.x > transform.position.x)
         {
-            print("right");
+            
            
             if (EnemyOrientation != 1)
             {
@@ -34,7 +34,7 @@ public class PlantEnemyController : MonoBehaviour
         }
         else
         {
-            print("Left");
+           
             
             if (EnemyOrientation == 1)
             {

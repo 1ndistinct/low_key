@@ -13,7 +13,11 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(AnimationController), typeof(Collider2D))]
     public class EnemyController : MonoBehaviour
     {
-        public PatrolPath path;
+        public Transform[] pathMarkers;
+        private Transform target;
+        public float patrolSpeed;
+        public bool isTriggered;
+
         public AudioClip ouch;
         public HealthBar healthBar;
         public GameObject parent;
@@ -32,12 +36,14 @@ namespace Platformer.Mechanics
 
         void Awake()
         {
-            
-            healthBar.setMaxHealth(Health);
+            parent.GetComponent<AIPath>().enabled = false;
+            //healthBar.setMaxHealth(Health);
             control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            target = pathMarkers[0];
+            isTriggered = false;
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -109,16 +115,26 @@ namespace Platformer.Mechanics
         void Update()
         {
             Health = EnemyHealth;
-            healthBar.setHealth(Health);
-            if (path != null)
-            {
-                if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
-                control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
-            }
+            //healthBar.setHealth(Health);
             if (EnemyHealth <= 0)
                 parent.GetComponent<AIPath>().enabled = false;
             
-           
+            if (!isTriggered)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position,Time.deltaTime*patrolSpeed);
+                if (transform.position.x == pathMarkers[0].position.x)
+                {
+                    target = pathMarkers[1];
+                }
+                if (transform.position.x == pathMarkers[1].position.x)
+                {
+                    target = pathMarkers[0];
+                }
+            }
+            else
+            {
+                parent.GetComponent<AIPath>().enabled = true;
+            }
         }
 
     }

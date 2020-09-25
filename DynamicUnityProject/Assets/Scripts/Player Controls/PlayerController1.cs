@@ -17,7 +17,8 @@ public class PlayerController1 : MonoBehaviour
     public float forceMultiplier;
     float t = 1, MaxGravity = 50;
     public GameObject gameOverOverlay;
-    
+
+    public float moveSpeed = 80000;
     //
     private Rigidbody2D rb;
     //
@@ -27,7 +28,7 @@ public class PlayerController1 : MonoBehaviour
     //User Variables
     public static float maxHealth = 10;
     public static float maxEnergy = 1;
-    
+    public float purpleResource = GameManager.ResourcePurple;
     public HealthBar healthBar;
     public EnergyBar energyBar;
     public GameObject mainCamera;
@@ -67,6 +68,7 @@ public class PlayerController1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        purpleResource = GameManager.ResourcePurple;
         if (GameManager.currentHealth <= 0)
             GameOver();
 
@@ -77,7 +79,7 @@ public class PlayerController1 : MonoBehaviour
 
         if (isOnGround)
         {
-            gravityModifier = 1;
+            gravityModifier = 0.7f;
         }
         else
         {
@@ -93,7 +95,7 @@ public class PlayerController1 : MonoBehaviour
         if (transform.position.x > mainCamera.transform.position.x)
             transform.position = new Vector2(mainCamera.transform.position.x, transform.position.y);*/
         //
-        getAction();
+        GetAction();
 
         GameManager.PlayerCoords = gameObject.transform;
       
@@ -101,7 +103,7 @@ public class PlayerController1 : MonoBehaviour
 
     }
 
-    private void getAction() {
+    private void GetAction() {
         
         //if (!isOnGround)
             //gravityModifier = 20;
@@ -118,11 +120,11 @@ public class PlayerController1 : MonoBehaviour
         {
             xInput = Input.GetAxis("Horizontal");
             yInput = Input.GetAxis("Vertical");
-            xForce = xInput * GameManager.moveSpeed * 60000 * Time.deltaTime*forceMultiplier;
+            xForce = xInput * GameManager.moveSpeed * moveSpeed * Time.deltaTime*forceMultiplier;
             if (right)
-                dForce = GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
+                dForce = GameManager.moveSpeed * moveSpeed * Time.deltaTime * 30*forceMultiplier;
             else
-                dForce = -1 * GameManager.moveSpeed * 60000 * Time.deltaTime * 25*forceMultiplier;
+                dForce = -1 * GameManager.moveSpeed * moveSpeed * Time.deltaTime * 25*forceMultiplier;
            
             
             force = new Vector2(xForce, 0);
@@ -241,6 +243,12 @@ public class PlayerController1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("PurpleResource"))
+        {
+            Destroy(collision.gameObject);
+            GameManager.addPR(1);
+
+        }
         //Checks if player is on ground to jump
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -257,11 +265,11 @@ public class PlayerController1 : MonoBehaviour
             cameraAnim.SetTrigger("ZoomIn");
             cameraAnim.ResetTrigger("ZoomOut");
         }
-        if (collision.gameObject.CompareTag("Coin Pickup"))
+/*        if (collision.gameObject.CompareTag("Coin Pickup"))
         {
             collision.gameObject.SetActive(false);
             GameManager.Coins += 1;
-        }
+        }*/
 
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
