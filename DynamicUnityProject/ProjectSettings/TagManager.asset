@@ -18,6 +18,9 @@ TagManager:
   - ImmediateDeath
   - PORTAL
   - Far View
+  - PurpleResource
+  - Resource
+  - Boss
   layers:
   - Default
   - TransparentFX

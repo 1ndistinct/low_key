@@ -29,9 +29,9 @@ namespace Platformer.Mechanics
 
 
         //Variables
-        public static float MaxHealth = 0.8f;
-        public static float Health = 0.8f;
-        public float EnemyHealth = 0.8f;
+        public static float MaxHealth = 0.2f;
+        public static float Health = 0.2f;
+        public float EnemyHealth = 0.2f;
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
@@ -82,7 +82,7 @@ namespace Platformer.Mechanics
         {
             if (other.gameObject.CompareTag("projectile"))
             {
-                if (EnemyHealth - 0.2f <= 0)
+                if (EnemyHealth - 0.1f <= 0)
                 {
                     gameObject.SetActive(false);
                     EnemyHealth = 0f;
@@ -91,7 +91,7 @@ namespace Platformer.Mechanics
                 }
                 else
                 {
-                    EnemyHealth -= 0.2f;
+                    EnemyHealth -= 0.1f;
                 }
                 Destroy(other.gameObject);
                 

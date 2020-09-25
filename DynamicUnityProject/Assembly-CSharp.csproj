@@ -96,6 +96,7 @@
     <Compile Include="Assets\GameOver.cs" />
     <Compile Include="Assets\GuiControls.cs" />
     <Compile Include="Assets\HealthBar.cs" />
+    <Compile Include="Assets\HealthBarBoss.cs" />
     <Compile Include="Assets\HealthBarEnemy.cs" />
     <Compile Include="Assets\LoadScene.cs" />
     <Compile Include="Assets\MainMenu.cs" />
