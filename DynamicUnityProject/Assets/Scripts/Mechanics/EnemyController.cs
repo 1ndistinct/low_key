@@ -65,7 +65,7 @@ namespace Platformer.Mechanics
                 Rigidbody2D rbb = collision.gameObject.GetComponent<Rigidbody2D>();
                 PlayerController1.doActive = false;
                 rbb.AddForce(dir * 600, ForceMode2D.Impulse);
-                GameManager.TakeDamage(0.1f);
+                GameManager.TakeDamage(1f);
                 
                 PlayerController1.doActive = true;
                 /*playerAnim.SetBool("Death_b", true);

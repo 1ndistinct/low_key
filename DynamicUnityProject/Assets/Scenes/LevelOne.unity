@@ -2329,7 +2329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerMarker: {fileID: 0}
-  EnemyHealth: 0.2
+  EnemyHealth: 0.49
 --- !u!61 &214856295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9652,7 +9652,7 @@ PrefabInstance:
     - target: {fileID: 772289407653213039, guid: f158aa2be3df6489185ef721f6fd79c1,
         type: 3}
       propertyPath: EnemyHealth
-      value: 0.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1577774018119691272, guid: f158aa2be3df6489185ef721f6fd79c1,
         type: 3}
