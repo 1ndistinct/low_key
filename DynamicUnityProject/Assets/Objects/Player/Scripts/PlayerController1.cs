@@ -8,6 +8,11 @@ using UnityEngine;
 public class PlayerController1 : MonoBehaviour
 {
 
+    //InventoryOverlayObject
+    //[SerializeField] private UI_Inventory uI_Inventory;
+    private Inventory inventory;
+    public GameObject PlayerInventoryObject;
+    private UI_Inventory uI_Inventory;
     public float xInput, yInput, xForce,dForce;
     Vector2 dashForce,force;
     public float jumpForce;
@@ -22,7 +27,8 @@ public class PlayerController1 : MonoBehaviour
     //
     private Rigidbody2D rb;
     //
- 
+
+
 
 
     //User Variables
@@ -47,7 +53,11 @@ public class PlayerController1 : MonoBehaviour
     // Start is called before the first frame update
     public static bool doActive = true;
 
-   
+    private void Awake()
+    {
+        inventory = new Inventory();
+        PlayerInventoryObject.GetComponent<UI_Inventory>().SetInventory(inventory);
+    }
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
@@ -68,6 +78,22 @@ public class PlayerController1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        ///PlayerInventoryObject.GetComponent<UI_Inventory>().SetInventory(inventory);
+        //Opens up game inventory 
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (PlayerInventoryObject.activeSelf)
+            {
+                PlayerInventoryObject.SetActive(false);
+            }
+            else
+            {
+                PlayerInventoryObject.SetActive(true);
+            }
+            
+        }
+
         purpleResource = GameManager.ResourcePurple;
         if (GameManager.currentHealth <= 0)
             GameOver();
@@ -269,6 +295,7 @@ public class PlayerController1 : MonoBehaviour
         {
             Destroy(collision.gameObject);
             GameManager.addPR(1);
+            inventory.AddItem(new Item { resources = Item.Resources.ResourceItems.Purple, amount = 1, ItemType = "Resource" });
 
         }
         //Checks if player is on ground to jump

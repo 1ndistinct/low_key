@@ -262,6 +262,10 @@ MonoBehaviour:
   forceMultiplier: 1.5
   gameOverOverlay: {fileID: 0}
   moveSpeed: 80000
+  uI_Inventory: {fileID: 510928519077426137, guid: bb96d34a728fc6946a64b0a0d0b1067e,
+    type: 3}
+  PlayerInventoryObject: {fileID: 510928519077426133, guid: bb96d34a728fc6946a64b0a0d0b1067e,
+    type: 3}
   purpleResource: 1
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
