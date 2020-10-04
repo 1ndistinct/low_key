@@ -14,6 +14,7 @@ public class FlameDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerController1>().PlayerTakesDamage(1.0f, 0.5f);
+        if(collision.CompareTag("Player"))
+            collision.gameObject.GetComponent<PlayerController1>().PlayerTakesDamage(1.0f, 0.5f);
     }
 }

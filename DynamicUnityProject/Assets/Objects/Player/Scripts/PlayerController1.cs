@@ -12,6 +12,8 @@ public class PlayerController1 : MonoBehaviour
     //[SerializeField] private UI_Inventory uI_Inventory;
     private Inventory inventory;
     public GameObject PlayerInventoryObject;
+    public GameObject SkillTree;
+    public GameObject SkillInventoryObject;
     private UI_Inventory uI_Inventory;
     public float xInput, yInput, xForce,dForce;
     Vector2 dashForce,force;
@@ -28,12 +30,12 @@ public class PlayerController1 : MonoBehaviour
     private Rigidbody2D rb;
     //
 
-
-
-
     //User Variables
     public static float maxHealth = 10;
     public static float maxEnergy = 1;
+
+    public static List<string> abilities = new List<string>();
+
     public float purpleResource = GameManager.ResourcePurple;
     public HealthBar healthBar;
     public EnergyBar energyBar;
@@ -56,10 +58,17 @@ public class PlayerController1 : MonoBehaviour
     private void Awake()
     {
         inventory = new Inventory();
-        PlayerInventoryObject.GetComponent<UI_Inventory>().SetInventory(inventory);
+        abilities.Add("melee");
+        abilities.Add("ranged");
+        //abilities.Add("move");
+
     }
     void Start()
     {
+        SkillTree.transform.Find("GemInventory").GetComponent<UI_Inventory>().SetInventory(inventory);
+        PlayerInventoryObject.GetComponent<UI_Inventory>().SetInventory(inventory);
+        
+
         mainCamera = GameObject.Find("Main Camera");
         right = true;
         //GameObject.DontDestroyOnLoad(this.gameObject);
@@ -72,7 +81,6 @@ public class PlayerController1 : MonoBehaviour
         GameManager.currentEnergy = maxEnergy;
         energyBar.setMaxEnergy(maxEnergy);
         gravity = rb.gravityScale;
-
     }
     
     // Update is called once per frame
@@ -85,13 +93,29 @@ public class PlayerController1 : MonoBehaviour
         {
             if (PlayerInventoryObject.activeSelf)
             {
+                doActive = true;
                 PlayerInventoryObject.SetActive(false);
             }
             else
             {
+                doActive = false;
                 PlayerInventoryObject.SetActive(true);
             }
             
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (SkillTree.activeSelf)
+            {
+                doActive = true;
+                SkillTree.SetActive(false);
+            }
+            else
+            {
+                doActive = false;
+                SkillTree.SetActive(true);
+            }
+
         }
 
         purpleResource = GameManager.ResourcePurple;
@@ -295,7 +319,7 @@ public class PlayerController1 : MonoBehaviour
         {
             Destroy(collision.gameObject);
             GameManager.addPR(1);
-            inventory.AddItem(new Item { resources = Item.Resources.ResourceItems.Purple, amount = 1, ItemType = "Resource" });
+            inventory.AddItem(new Item((int)Item.ResourceItems.Purple,true,1));
 
         }
         //Checks if player is on ground to jump
